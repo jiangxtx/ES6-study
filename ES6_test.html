@@ -1,0 +1,64 @@
+
+<p>友情提醒：请打开firebug控制台查看输出信息！！！</p>
+
+<script>
+	
+	///////////////////////////////////////////// 箭头操作符
+	var array = [12, 23, 34];
+	
+	console.info('传统写法：');
+	array.forEach(function(value, index, arr) {
+		console.log(value, index, arr);
+	}); 
+	
+	
+	console.info('ES6的写法：');
+	array.forEach( value => console.log(value) );
+	
+	array.forEach( (value,index) => {
+		console.log(value, index);
+	});
+	
+	array.forEach( (value,index) => _showArrItem(value,index) );
+	
+	function _showArrItem(value,index) {
+		console.log('index：' + index + ' 的值为：' + value);
+	}
+	
+</script>
+
+<script>
+	////////////////////////////////////////////////// 类的支持
+	
+	class Animal {
+		// ES6中新型构造器
+		constructor(name) {
+			this.name = name;
+		}
+		// 实例方法
+		sayName() {
+			console.log('my name is: ' + this.name);
+		}
+	}
+
+	class Programmer extends Animal {
+		constructor(name) {
+			super(name);
+		}
+
+		program() {
+			console.log('I am coding...');
+		}
+	}
+
+	// Do some Tests about class
+	var animal = new Animal('dog'),
+		jiujiang = new Programmer('jiujiang');
+	animal.sayName();
+	jiujiang.sayName();
+	jiujiang.program();
+
+	
+	
+	
+</script>
