@@ -1,0 +1,79 @@
+<html>
+<body>
+<style>
+    #a {color : #FFFF00;}
+    #a:hover > #b{color : #FF0000;}    
+    #a:hover + #c{color : #00FF00;}
+    #a:hover + #c > #d{color : #0000FF;}
+    
+    #s1:hover {color:gray}
+    #s1:hover > .item{color : #00FF00;}
+    
+    .s2:hover {color:gray}
+    .s2 .dn { display: none;}
+    .s2:hover > .item{color : #00FF00;display:block}
+    
+    
+    .video_select {
+        width: 150px;
+        border: 1px solid #069;
+        padding: 5px;
+        position:relative;
+    }
+ 
+    h2,p {
+        font-size:.7em;
+        font-family: Arial,sans-serif;
+        margin: 0;
+    }
+ 
+    p {
+        width: 150px;
+        border:1px solid gray;
+        padding: .3em;
+        background-color: #FFD;
+        display: none;
+        position: absolute;
+        top: 15px;
+        left: 160px;
+    }
+ 
+    div:hover p, p:hover{display: block;}
+</style>
+<div id='a'>元素1
+  <div id='b'>元素2</div>
+</div>
+<div id='c'>元素3
+  <div id='d'>元素4</div>
+</div>
+
+<hr />
+<div id='s1'>元素S1
+  <div class='item'>元素S11</div>
+</div>
+
+<hr />
+<div class='s2'>元素S2
+  <div class='item'>元素S21</div>
+</div>
+<div class='s2'>元素3
+  <div class='item dn'>元素S31</div>
+</div>
+<div class='s2'>元素S4
+  <div class='item'>元素S41</div>
+</div>
+
+<hr />
+<h3>hover 来实现鼠标移到图片上显示解释文字</h3>
+<div class="video_select">
+  <a href=""><img src="3.jpg" style="width:50px;height:80px;" alt="" /></a>
+  
+  <!-- 注意：不要把display：none 写在p标签上，写在CSS中 -->
+  <p>Boddy is a #2 Diabetic who weighted 274 pounds.
+      After a change in diet he is no longer on medicatio.Runtime:46 sec
+  </p>
+  <h2><a href="#">Living with Diabetic;Boddy's story</a></h2>
+</div>
+
+</body>
+</html>
