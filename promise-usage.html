@@ -1,0 +1,132 @@
+﻿<!--
+    Description:
+        simply introduce the function and usage of 'promise' in ES6.
+    Appendix：
+        下面略微修改了英文版的示例，主要是执行3次testPromise()的效果，如果您有疑问，可以参看英文的说明文档：
+            https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>ES6 Promise example</title>
+
+    <link rel="stylesheet" href="">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<h1>一个用了Promise和XMLHttpRequest加载一个图像的例子</h1>
+<div id="image_div">这里是一张美丽的图片~~~</div>
+<small style="margin: 50px;color:red;display: block;">结论：经测试，在chrome浏览器中报了同源错误；在firefox浏览器中可正常显示图片；IE则完全不支持！</small>
+
+<p>Darth Vader image by <a href="https://www.flickr.com/photos/digital_stability/">Shawn Taylor</a>,
+    published under a <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">Attribution-NonCommercial-NoDerivs 2.0 Generic</a> license.</p>
+</body>
+
+<script>
+    function imgLoad(url) {
+        // Create new promise with the Promise() constructor;
+        // This has as its argument a function
+        // with two parameters, resolve and reject
+        return new Promise(function(resolve, reject) {
+            // Standard XHR to load an image
+            var request = new XMLHttpRequest();
+            request.open('GET', url);
+            request.responseType = 'blob';
+            // When the request loads, check whether it was successful
+            request.onload = function() {
+                if (request.status === 200) {
+                    // If successful, resolve the promise by passing back the request response
+                    resolve(request.response);
+                } else {
+                    // If it fails, reject the promise with a error message
+                    reject(Error('Image did not load successfully; error code:' + request.statusText));
+                }
+            };
+            request.onerror = function() {
+                // Also deal with the case when the entire request fails to begin with
+                // This is probably a network error, so reject the promise with an appropriate message
+                reject(Error('There was a network error.'));
+            };
+            request.send();
+        });
+    }
+
+    imgLoad('./img/yuanshuying.png').then(function(response) {
+        console.info('promise resolve response:', response);
+        var imageURL = window.URL.createObjectURL(response);
+        var myImage = new Image();
+        myImage.src = imageURL;
+        document.getElementById('image_div').appendChild(myImage);
+    }, function(Error) {
+        console.log(Error);
+    });
+    // Call the function with the URL we want to load, but then chain the
+    // promise then() method on to the end of it. This contains two callbacks
+    // Get a reference to the body element, and create a new image object
+
+</script>
+
+<hr />
+<h1>主要是执行3次testPromise()的效果</h1>
+<div id="log"></div>
+<script>
+    'use strict';
+    var promiseCount = 0;
+    function testPromise() {
+        var thisPromiseCount = ++promiseCount;
+
+        var log = document.getElementById('log');
+        log.insertAdjacentHTML('beforeend', thisPromiseCount + ') 开始(同步代码开始)<br/>');
+
+        // 我们创建一个新的promise: 然后用'result'字符串完成这个promise (3秒后)
+        var p1 = new Promise(function (resolve, reject) {
+            // 完成函数带着完成（resolve）或拒绝（reject）promise的能力被执行
+            log.insertAdjacentHTML('beforeend', thisPromiseCount + ') Promise开始(异步代码开始)<br/>');
+
+            // 这只是个创建异步完成的示例
+            window.setTimeout(function () {
+                /**
+                 * 下面的两个函数调用分别对应：
+                 *      1. 满足（resolve）了这个promise!
+                 *      2. 拒绝（reject）了这个promise!
+                 *  这两个函数都直接收一个参数，后面参数-undefined.
+                 *  实际使用中，Note that 要注释掉一个（如果都运行，则只会执行前面的一个 !important）
+                 *          --jiangxtx 16.10.10
+                 */
+//                reject(thisPromiseCount);
+//                resolve(thisPromiseCount+1, 'You hint me_'+thisPromiseCount);
+                let tmpObj = {
+                    count :　thisPromiseCount,
+                    tag: 'You hint me_'+thisPromiseCount
+                };
+                resolve(tmpObj);
+
+            }, Math.random() * 2000 + 1000);
+        });
+
+        // 定义当promise被满足时应做什么
+//        p1.then(function (val, tag) {
+        p1.then( function (obj) {
+            // success-输出一段信息和一个值
+            log.insertAdjacentHTML('beforeend', obj.count + ') Promise被满足了(异步代码结束)' + obj.tag +'<br/>');
+        }, function (val) {
+            // error-输出一段信息和一个值
+            log.insertAdjacentHTML('beforeend', val + ') Promise获取失败了(异步代码结束)<br/>');
+        } );
+
+        log.insertAdjacentHTML('beforeend', thisPromiseCount + ') 建立了Promise(同步代码结束)<br/><br/>');
+    }
+    testPromise();
+    testPromise();
+    testPromise();
+</script>
+
+</html>
