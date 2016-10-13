@@ -84,9 +84,10 @@
     response_stream.text().then(function (data) {
         console.log('data info: ', data);
         console.log('2.is bodyUsed: ', response_stream.bodyUsed);
-    }).catch(e => console.log('Tried to read already consumed Response!!'));;
+    });
     console.log('3.is bodyUsed: ', response_stream.bodyUsed);
-//    resquest_stream.text().catch(e => console.log('Tried to read already consumed Response!!'));
+    resquest_stream.text().catch( e => console.log('Tried to read already consumed Response!!') );
+
 
 
 
