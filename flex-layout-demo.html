@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>FlexBox 布局指南</title>
+<head>
+    <style>
+
+        .flex {
+            /* 基本样式 */
+            max-width: 1350px;
+            height: 200px;
+            border: 1px solid #555;
+            font: 14px Arial;
+
+            /*  建立弹性框 */
+            display: -webkit-flex;
+            -webkit-flex-direction: row;
+
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex > div {
+            -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
+
+            width: 30px; /* 让过渡表现良好。（从/到"width:auto"的过渡
+                      至少在 Gecko 和 Webkit 上是有 bug 的。
+                      更多信息参见 http://bugzil.la/731886 ） */
+
+            -webkit-transition: width 0.7s ease-out;
+            transition: width 0.7s ease-out;
+        }
+
+        /* colors */
+        .flex > div:nth-child(1){ background : #009246; }
+        .flex > div:nth-child(2){ background : #F1F2F1; }
+        .flex > div:nth-child(3){ background : #CE2B37; }
+
+        .flex > div:hover {
+            width: 200px;
+        }
+
+    </style>
+
+    <style>
+        #main {
+            min-height: 500px;
+            margin: 0px;
+            padding: 0px;
+            display: -webkit-flex;
+            display:         flex;
+            -webkit-flex-flow: row;
+            flex-flow: row;
+        }
+        #main > article {
+            margin: 4px;
+            padding: 5px;
+            border: 1px solid #cccc33;
+            border-radius: 7pt;
+            background: #dddd88;
+            -webkit-flex: 3 1 60%;
+            flex: 3 1 60%;
+            -webkit-order: 2;
+            order: 2;
+        }
+
+        #main > nav {
+            margin: 4px;
+            padding: 5px;
+            border: 1px solid #8888bb;
+            border-radius: 7pt;
+            background: #ccccff;
+            -webkit-flex: 1 6 20%;
+            flex: 1 6 20%;
+            -webkit-order: 1;
+            order: 1;
+        }
+
+        #main > aside {
+            margin: 4px;
+            padding: 5px;
+            border: 1px solid #8888bb;
+            border-radius: 7pt;
+            background: #ccccff;
+            -webkit-flex: 1 6 20%;
+            flex: 1 6 20%;
+            -webkit-order: 3;
+            order: 3;
+        }
+
+        /* 窄到已不足以支持三栏 */
+        @media all and (max-width: 640px) {
+
+            #main {
+                -webkit-flex-flow: column;
+                flex-direction: column;
+            }
+
+            #main > article, #main > nav, #main > aside {
+                /* 恢复到文档内的自然顺序 */
+                -webkit-order: 0;
+                order: 0;
+            }
+
+            #main > nav, #main > aside, header, footer {
+                min-height: 50px;
+                max-height: 50px;
+            }
+        }
+
+        /* 完美居中 */
+
+        .boxContainer {
+            position: relative;
+            min-height: 280px;
+            border: 2px dashed #e3c300;
+        }
+
+        .box-wrapper {
+            position: absolute; /* absolute 时，相对展示页面居中，会随着鼠标拖动而移动；
+                                   fixed 时，则相对浏览器屏幕完全居中，不会随着鼠标拖动而移动；
+                                */
+            top: 50%;
+            left: 50%;
+            z-index: 3;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            border-radius: 6px;
+            background-color: #00AA00;
+            padding: 6px;
+        }
+
+        .parent {
+            display: flex;
+            height: 300px; /* Or whatever */
+            border: 1px solid #00AA00;
+        }
+        .child {
+            width: 100px;  /* Or whatever */
+            height: 100px; /* Or whatever */
+            margin: auto;  /* Magic! */
+            background-color: #0a628f;
+        }
+
+
+
+        .flex-container {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+
+            -webkit-flex-flow: row wrap;
+            justify-content: space-around;
+        }
+
+        .flex-item {
+            background: tomato;
+            padding: 5px;
+            width: 200px;
+            height: 150px;
+            margin-top: 10px;
+
+            line-height: 150px;
+            color: white;
+            font-weight: bold;
+            font-size: 3em;
+            text-align: center;
+        }
+
+
+        /*  navgiator  */
+
+        .navigation {
+            list-style: none;
+            margin: 0;
+            background: deepskyblue;
+
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+
+            -webkit-flex-flow: row wrap;
+            justify-content: flex-end;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            display: block;
+            padding: 1em;
+            color: white;
+        }
+
+        .navigation a:hover {
+            opacity: 0.5;
+        }
+
+        @media all and (max-width: 800px) {
+            .navigation {
+                justify-content: space-around;
+            }
+        }
+
+        @media all and (max-width: 600px) {
+            .navigation {
+                -webkit-flex-flow: column wrap;
+                flex-flow: column wrap;
+                padding: 0;
+            }
+
+            .navigation a {
+                text-align: center;
+                padding: 10px;
+                border-top: 1px solid rgba(255,255,255,0.3);
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .navigation li:last-of-type a {
+                border-bottom: none;
+            }
+        }
+    </style>
+
+    <style>
+        .wrapper {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .wrapper > * {
+            padding: 10px;
+            flex: 1 100%;
+        }
+
+        /* 设置所有标签宽度为100% */
+        .header,
+        .main,
+        .nav,
+        .aside,
+        .footer {
+            flex: 1 100%;
+        }
+
+        .header {
+            background: tomato;
+        }
+
+        .footer {
+            background: lightgreen;
+        }
+
+        .main {
+            text-align: left;
+            background: deepskyblue;
+        }
+
+        .aside-1 {
+            background: gold;
+        }
+
+        .aside-2 {
+            background: hotpink;
+        }
+
+        /* 我们利用文档流顺序，考虑移动端先行
+         * 在这个例子中的顺序:
+         * 1. header
+         * 2. nav
+         * 3. main
+         * 4. aside
+         * 5. footer
+         */
+
+        /* Medium screens */
+        @media all and (min-width: 600px) {
+            /* 两个边栏在同一行 */
+            .aside { flex: 1 auto; }
+        }
+
+        /* Large screens */
+        @media all and (min-width: 800px) {
+            /* 设置左边栏在主内容左边
+             * 设置主内容区域宽度是其他两个侧边栏宽度的两倍
+             */
+            .main { flex: 2 0px; }
+
+            .aside-1 { order: 1; }
+            .main    { order: 2; }
+            .aside-2 { order: 3; }
+            .footer  { order: 4; }
+        }
+    </style>
+
+</head>
+<body>
+<h2>基本的弹性布局示例</h2>
+<div class="flex">
+    <div>uno</div>
+    <div>due</div>
+    <div>tre</div>
+</div>
+
+<h2>适配屏幕的弹性布局示例 <sub>(width < 640px 会有变化)</sub></h2>
+<div id='main'>
+    <article>article</article>
+    <nav>nav</nav>
+    <aside>aside</aside>
+</div>
+
+<hr />
+<h2>居中的几种布局: </h2>
+<h3>一、Flex 的完美居中: <sub>不定宽 & 高</sub></h3>
+<div class="parent">
+    <div class="child">
+        position center?
+    </div>
+</div>
+
+<h3>二、Box 的传统居中: <sub>relative > absolute</sub></h3>
+<div class="boxContainer">
+    <div class="box-wrapper">
+        <div class="box-wrapper-item">
+            <h3>我要居中！relative > absolute！</h3>
+        </div>
+    </div>
+</div>
+
+<h3>三、Box 的居中（2）: <sub>body > absolute</sub></h3>
+<div class="box-wrapper">
+    <div class="box-wrapper-item">
+        <h3>我要居中！相对 body > absolute！！</h3>
+    </div>
+</div>
+
+<h3>四、Box 的居中（fixed）: </h3>
+<div class="box-wrapper" style="position: fixed;">
+    <div class="box-wrapper-item">
+        <h3 style="color: #fff">我要居中！绝对 fixed！！</h3>
+    </div>
+</div>
+
+<hr />
+
+<h2>自适应的列表项:</h2>
+<ul class="flex-container">
+    <li class="flex-item">1</li>
+    <li class="flex-item">2</li>
+    <li class="flex-item">3</li>
+    <li class="flex-item">4</li>
+    <li class="flex-item">5</li>
+    <li class="flex-item">6</li>
+</ul>
+
+<h2>自适应的网站导航:</h2>
+<ul class="navigation">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Products</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
+
+<h2>更灵活性的伸缩项目:
+    <sub>关于移动先行，3列布局与页眉页脚全屏,和独立的文档顺序。</sub>
+</h2>
+<div class="wrapper">
+    <header class="header">Header</header>
+    <article class="main">
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+            Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.
+            Mauris placerat eleifend leo.
+        </p>
+    </article>
+    <aside class="aside aside-1">Aside 1</aside>
+    <aside class="aside aside-2">Aside 2</aside>
+    <footer class="footer">Footer</footer>
+</div>
+
+</body>
+</html>
