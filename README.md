@@ -18,7 +18,7 @@ This page will show :
 
 3. two different ways of Center-Layout(上下左右居中),
 
-    + traditional box Style;  
+    + traditional box Style;(also see `algin-center-BoxCss-demo.html` file)  
 
     + flexbox Style;
 

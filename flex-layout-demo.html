@@ -400,9 +400,11 @@
 </div>
 
 <h3>四、Box 的居中（fixed）: </h3>
-<div class="box-wrapper" style="position: fixed;">
+<div id="wrap_fix" class="box-wrapper" style="position: fixed;">
     <div class="box-wrapper-item">
-        <h3 style="color: #fff">我要居中！绝对 fixed！！</h3>
+        <h3 style="color: #fff">我要居中！绝对 fixed！！
+            <sub><button tltle="close fixed" onclick="closeFixed();">X</button></sub>
+        </h3>
     </div>
 </div>
 
@@ -576,5 +578,12 @@
 </div>
 
 
+<script>
+    function closeFixed() {
+//        alert('closeFixed()..')
+        document.getElementById("wrap_fix").style.display = 'none';
+    }
+
+</script>
 </body>
 </html>
