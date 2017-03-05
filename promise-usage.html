@@ -24,11 +24,10 @@
 <body>
 <h1>一个用了Promise和XMLHttpRequest加载一个图像的例子</h1>
 <div id="image_div">这里是一张美丽的图片~~~</div>
-<small style="margin: 50px;color:red;display: block;">结论：经测试，在chrome浏览器中报了同源错误；在firefox浏览器中可正常显示图片；IE则完全不支持！</small>
+<small style="margin: 50px;color:red;display: block;">
+    结论：经测试，在chrome浏览器中报了同源错误；在firefox浏览器中可正常显示图片；IE则完全不支持！
+</small>
 
-<p>Darth Vader image by <a href="https://www.flickr.com/photos/digital_stability/">Shawn Taylor</a>,
-    published under a <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">Attribution-NonCommercial-NoDerivs 2.0 Generic</a> license.</p>
-</body>
 
 <script>
     function imgLoad(url) {
@@ -64,6 +63,10 @@
         var imageURL = window.URL.createObjectURL(response);
         var myImage = new Image();
         myImage.src = imageURL;
+        myImage.onload = function () {
+            console.log('>>>remove imageURL blob!!', typeof imageURL)
+            window.URL.revokeObjectURL(imageURL);
+        }
         document.getElementById('image_div').appendChild(myImage);
     }, function(Error) {
         console.log(Error);
