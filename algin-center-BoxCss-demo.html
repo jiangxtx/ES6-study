@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+            .wrapper { position:relative; }
+				
+		    .content{
+		        background-color:#6699FF;
+		        width:200px;
+		        height:200px;
+		        position: absolute;
+		        top: 50%;
+		        left: 50%;
+		        margin-top:-100px ;
+		        margin-left: -100px;
+		    }
+		    
+		    .Absolute-Center {  
+		    	background-color: red;
+                margin: auto;
+                width: 250px;
+                height:160px;
+                position: absolute;
+                top: 0; left: 0; bottom: 0; right: 0;
+            }
+
+            .Center-Container .is-Table {
+                display: table;
+                height: 30%;
+            }
+
+            .is-Table .Table-Cell {
+                background-color: yellow;
+              display: table-cell;
+              vertical-align: middle;
+            }
+
+            .is-Table .Center-Block {
+              width: 50%;
+              margin: 0 auto;
+            }
+
+		</style>
+	</head>
+	<body>
+
+		<h1>This will show you a test about centering CSS!</h1>
+		<sub>xiajiujiang --16.05.04</sub>
+		<!-- -->
+		<div class="">
+		    <div class="content">
+                METHOD-1(Absolute Centering)I am a little dog, sitting here smily!!
+            </div>
+		</div>
+
+        <div style="height: 80px">
+            我就是来打个酱油、占个位置的~~~
+        </div>
+		
+		<div class="" style="position: relative; height: 300px;
+		                    border: 1px dotted; margin: 50px;">
+            <div class="Absolute-Center">
+                METHOD-2(Absolute Centering)I am a little dog, sitting here smily!
+            </div>
+		</div>
+
+		 
+		<div class="Center-Container is-Table">  
+            <div class="Table-Cell">
+                <div class="Center-Block">
+                    <p>I am a little dog, sitting here smily!!
+                        I am a little dog, sitting here smily!!</p>
+                </div>
+            </div>
+		</div>
+
+	</body>
+</html>

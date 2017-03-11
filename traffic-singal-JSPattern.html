@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic-singal-demo</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #traffic > li{
+            display: block;
+        }
+
+        #traffic span{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: gray;
+            margin: 5px;
+            border-radius: 50%;
+        }
+
+        #traffic.stop li:nth-child(1) span{
+            background-color: red;
+        }
+
+        #traffic.wait li:nth-child(2) span{
+            background-color: yellow;
+        }
+
+        #traffic.pass li:nth-child(3) span{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1><a href="http://mp.weixin.qq.com/s/wDuNAzV7JbRaH1Pe9o4B2g">JS 设计模式实例解读</a></h1>
+            <h3>实现一个类似于“交通灯”的效果，让三个不同颜色的圆点每隔 1/2 秒循环切换。</h3>
+
+            <p>本 demo 旨在通过交通信号灯的示例，来展示不同模式下的用法，具体查看源文件中的详细代码。</p>
+            <p><strong>说明：</strong>源码中给出了 6 种不同的实现方式，现在所展现的是为第六种。</p>
+
+            <ul id="traffic" class="wait">
+                <li><span></span></li>
+                <li><span></span></li>
+                <li><span></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    const traffic = document.getElementById("traffic");
+
+    // choose a method and DO it!
+    method6();
+
+    /**
+     * 初级水准（JS 入门级）：
+     * 下面这段代码，功能是实现了，但弊端太多：
+     *      1. 过程耦合度高，操作顺序是耦合在一起的；
+     *      2. 异步嵌套会产生 callback hell；
+     */
+    function method1() {
+        (function reset() {
+            traffic.className = "wait";
+
+            setTimeout(function(){
+                traffic.className = "stop";
+                setTimeout(function(){
+                    traffic.className = "pass";
+                    setTimeout(reset, 2000)
+                }, 2000)
+            }, 2000);
+        })()
+    }
+
+
+    //
+    /**
+     * 解决版本一的过程耦合问题.
+     * 这版本的问题：
+     *      最大的问题就是封装性很差，它把 stateList 和 currentStateIndex 都暴露出来了，
+     *      而且以全局变量的形式，这么做很不好，需要优化。
+     * @type {[*]}
+     */
+    function method2() {
+        // 抽象出信号灯的状态
+        const stateList = ['wait', 'pass', 'stop']
+        var currrentStateIndex = 0
+        setInterval(function () {
+        //  console.log('currrentStateIndex: ', currrentStateIndex, stateArr[currrentStateIndex])
+            traffic.className = stateList[currrentStateIndex]
+            currrentStateIndex = (currrentStateIndex + 1) % stateList.length
+        }, 1500)
+    }
+
+
+    /**
+     * 下面这一版，用的是过程抽象的思路，而过程抽象，是函数式编程的基础。
+     * 在这里，我们抽象出了一个 poll(...fnList) 的高阶组合函数，它将一个函数列表组合起来，
+     * 每次调用时依次轮流执行列表里的函数。
+     *
+     * 我们说，程序设计的本质是抽象，而过程抽象是一种与数据抽象对应的思路，它们是两种不同的抽象模型。
+     * 数据抽象比较基础，而过程抽象相对高级一些，也更灵活一些。
+     * 数据抽象是研究函数如何操作数据，而过程抽象则在此基础上研究函数如何操作函数。
+     * 所以说如果把抽象比作数学，那么数据抽象是初等数学，过程抽象则是高等数学。
+     * 同一个问题，既可以用初等数学来解决，又可以用高等数学来解决。
+     * 用什么方法解决，取决于问题的模型和难度等等。
+     */
+    function method4() {
+
+        function poll(...fnList) {
+            let stateIndex = 0
+
+            return function (...args) {
+                let fn = fnList[stateIndex++ % fnList.length]
+                return fn.apply(this, args)
+            }
+        }
+
+        function setState(state) {
+            traffic.className = state
+        }
+
+        let trafficStatePoll = poll(
+            setState.bind(null, 'wait'),
+            setState.bind(null, 'stop'),
+            setState.bind(null, 'pass')
+        );
+
+        setInterval(trafficStatePoll, 1500)
+    }
+
+    /**
+     * 版本五
+     * 需求变更：让 wait、stop、pass 状态的持续时长不相等，分别改成 1秒、2秒、3秒。
+     */
+    function method5() {
+        // 将等待时间抽象出来, 抽象出的 wait 方法也还比较通用
+        function wait(time){
+            return new Promise(resolve => setTimeout(resolve, time));
+        }
+
+        function setState(state) {
+            this.className = state;
+        }
+
+        function reset(){
+            Promise.resolve()
+                .then(setState.bind(traffic, "wait"))
+                .then(wait.bind(null, 1000))
+                .then(setState.bind(traffic, "stop"))
+                .then(wait.bind(null, 2000))
+                .then(setState.bind(traffic, "pass"))
+                .then(wait.bind(null, 3000))
+                .then(reset);
+        }
+
+        reset();
+    }
+
+    /**
+     * 进一步抽象，设计出版本六，或者类似的对象模型。
+     * 有了这个模型，我们要添加新的状态，只需要通过 putState 添加一个新的状态就好了。
+     * 这一模型不仅仅可以用在这个需求里，还可以用在任何需要顺序执行异步请求的地方。
+     *
+     * 最后，版本六用到了面向对象、过程抽象、Promise等模式，
+     * 它的优点是 API 设计灵活，通用性和扩展性好。
+     * 但是版本六也有缺点，它的实现复杂度比前面的几个版本都高。
+     * 我们在做这样的设计时，也需要考虑是否有过度设计的嫌疑。
+     */
+    function method6() {
+
+        const trafficEl = document.getElementById('traffic')
+
+        /**
+         *
+         * @param el
+         * @param reset
+         * @constructor
+         */
+        function TrafficProtocol(el, reset) {
+            this.subject = el
+            this.autoReset = reset
+            this.stateList = []
+        }
+
+        TrafficProtocol.prototype.putState = function (fn) {
+            this.stateList.push(fn)
+        }
+
+        TrafficProtocol.prototype.reset = function () {
+            let subject = this.subject;
+            this.statePromise = Promise.resolve();
+
+            this.stateList.forEach((stateFn) => {
+                this.statePromise = this.statePromise.then(() => {
+                    return new Promise(resolve => {
+                        stateFn(subject, resolve)
+                    })
+                })
+            })
+
+            if (this.autoReset) {
+                this.statePromise.then(this.reset.bind(this))
+            }
+        }
+
+        TrafficProtocol.prototype.start = function () {
+            this.reset()
+        }
+
+        const traffic = new TrafficProtocol(trafficEl, true)
+
+        traffic.putState(function (subject, next) {
+            subject.className = 'wait'
+            setTimeout(next, 1000)
+        })
+
+        traffic.putState(function (subject, next) {
+            subject.className = 'stop'
+            setTimeout(next, 2000)
+        })
+
+        traffic.putState(function (subject, next) {
+            subject.className = 'pass'
+            setTimeout(next, 3000)
+        })
+
+        traffic.start();
+
+    }
+
+</script>
+
+</body>
+</html>

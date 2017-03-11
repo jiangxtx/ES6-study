@@ -2,6 +2,7 @@
 <html lang="en">
 <title>FlexBox 布局指南</title>
 <head>
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
     <style>
 
         .flex {
@@ -307,8 +308,58 @@
         }
     </style>
 
+    <style>
+        h2 {
+            margin-top: 50px;  color: brown;
+        }
+
+        .container .row { padding: 4px; border: 1px dotted #e0e0e0;}
+        .inbox {
+            display: flex;
+            width: 120px; height: 120px;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            padding: 8px; margin: 8px;
+        }
+        .dicebox-item {
+            display: inline-block;
+            width: 30px; height: 30px; margin: 3px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .dicebox-11 { display: flex;  }
+        .dicebox-12 { justify-content: center; }
+        .dicebox-13 { justify-content: flex-end; }
+
+        .dicebox-21 { align-items: center; justify-content: flex-start; }
+        .dicebox-22 { align-items: center; justify-content: center; }
+        .dicebox-23 { align-items: center; justify-content: flex-end; }
+
+        .dicebox-31 { align-items: flex-end; justify-content: flex-start; }
+        .dicebox-32 { align-items: flex-end; justify-content: center; }
+        .dicebox-33 { align-items: flex-end; justify-content: flex-end; }
+
+        .dicebox-41 { align-items: flex-start; justify-content: space-between; }
+        .dicebox-42 { align-items: flex-start; justify-content: flex-start; }
+        .dicebox-43 { align-items: flex-start; justify-content: flex-end; }
+        .dicebox-44 { align-items: flex-start; justify-content: space-around; }
+        .dicebox-45 { align-items: flex-start; justify-content: center; }
+        .dicebox-46 { align-items: flex-start; justify-content: space-between; flex-direction: column; }
+
+        .dicebox-47 { align-items: flex-start; }
+        .dicebox-47 .dicebox-item:nth-child(2) { align-self: center }
+
+        .dicebox-48 { align-items: flex-start; justify-content: space-between; }
+        .dicebox-48 .dicebox-item:nth-child(2) { align-self: center }
+
+        .dicebox-49 { align-items: flex-start; justify-content: space-between; }
+        .dicebox-49 .dicebox-item:nth-child(2) { align-self: flex-end; }
+    </style>
 </head>
 <body>
+
+<div id="part_1">
 <h2>基本的弹性布局示例</h2>
 <div class="flex">
     <div>uno</div>
@@ -349,9 +400,11 @@
 </div>
 
 <h3>四、Box 的居中（fixed）: </h3>
-<div class="box-wrapper" style="position: fixed;">
+<div id="wrap_fix" class="box-wrapper" style="position: fixed;">
     <div class="box-wrapper-item">
-        <h3 style="color: #fff">我要居中！绝对 fixed！！</h3>
+        <h3 style="color: #fff">我要居中！绝对 fixed！！
+            <sub><button tltle="close fixed" onclick="closeFixed();">X</button></sub>
+        </h3>
     </div>
 </div>
 
@@ -375,9 +428,12 @@
     <li><a href="#">Contact</a></li>
 </ul>
 
-<h2>更灵活性的伸缩项目:
-    <sub>关于移动先行，3列布局与页眉页脚全屏,和独立的文档顺序。</sub>
+<h2>圣杯布局:
+    <sub>更灵活性的伸缩项目</sub>
 </h2>
+    <p><strong>解释：</strong>圣杯布局（Holy Grail Layout）指的是一种最常见的网站布局。
+        页面从上到下，分成三个部分：头部（header），躯干（body），尾部（footer）。其中躯
+        干又水平分成三栏，从左到右为：导航、主栏、副栏。</p>
 <div class="wrapper">
     <header class="header">Header</header>
     <article class="main">
@@ -391,6 +447,143 @@
     <aside class="aside aside-2">Aside 2</aside>
     <footer class="footer">Footer</footer>
 </div>
+</div>
 
+<div id="part_2">
+
+    <div id="container" class="container">
+        <div class="row">
+            <h2>骰子式布局：</h2>
+            <p><strong>说明：</strong>此处，外围的布局采用 bootstrap 栅格布局，每个骰子内部采用 flexbox 布局。
+                充分体现了这两者在各自领域的用武之地！！！
+            </p>
+            <p><strong>为何？</strong>在编写这段时，发现 flex 的嵌套性不及栅格中的 row 与 col。</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-11">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-12">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-13">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-21">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-22">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-23">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-31">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-32">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-33">
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-41">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-42">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-43">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-44">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-45">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-46">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-47">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-48">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="inbox dicebox-49">
+                    <span class="dicebox-item"></span>
+                    <span class="dicebox-item"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+<script>
+    function closeFixed() {
+//        alert('closeFixed()..')
+        document.getElementById("wrap_fix").style.display = 'none';
+    }
+
+</script>
 </body>
 </html>
