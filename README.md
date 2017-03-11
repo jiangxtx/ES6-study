@@ -6,6 +6,7 @@ To learn new Features about es6/html5/css3 and so on.
 hover.html aim to learn the usage of hover, to instead of javascript codes in some way.
 
 ## flex-layout-demo.html
+
 主要内容包括：
 This page will show :
 1. basic and usual Flexbox Layout demo;
