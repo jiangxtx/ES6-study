@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>用 CSS 给 row-col 栏目加分割线</title>
+<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<style>
+    .container {
+        text-align: center;;
+    }
+    .product {
+        overflow: hidden;
+    }
+    .col-item {
+        text-align: center;
+        padding: 15px;
+        line-height: 1.8;
+        font-size: 14px;
+    }
+    .col-item:before {
+        border-left: 1px dashed #2f5c88;
+        top: 15px;
+        left: -1px;
+        bottom: 15px;
+        content: '';
+        position: absolute;
+    }
+    .col-item:after {
+        border-bottom: 1px dotted green;
+        right: 15px;
+        left: 15px;
+        bottom: -1px;
+        content: '';
+        position: absolute;
+    }
+    :after, :before {
+        box-sizing: border-box;
+    }
+</style>
+
+</head>
+<body>
+	<div class="section">
+		<div class="container" >
+			<div class="section-title">
+				<h1 style="font-size:35px; color: #000;">用 CSS 给 row-col 栏目加分割线</h1>
+                <h3>产品背景示例</h3>
+			</div>
+			<div class="section-introduce">
+				智能诊断系统是上海智而仁科技有限公司自主研发的一款高度智能化的在线学习系统。系统以名校资源为依托，以大数据、云计算、人工智能识别技术为支撑，以个性化教学为导向，集智能组卷、考试测验、诊断评价、复习自学多种功能于一体，把知识学习分散到每一个环节，用目标贯穿教学的每一个阶段，环环相扣，层层递进，开创大数据时代个性化循环学习模式。人工智能识别技术的运用，更是首次突破了主观题自动批改瓶颈，答案识别率达90%以上。全国名校资源不断汇聚，系统内的公共资源的数量也在持续增加。目前所有试用中小学的持续使用率100%，弃用、闲置本系统的比例为0，深受用户好评。
+			</div>
+            <h4 style="margin: 22px auto; color: red">注意下面每个版块的分隔符的 CSS 渲染技巧！
+                <sub style="display: block;margin-top: 15px;">——重点关注最两侧的线条是如何没有了的？</sub>
+            </h4>
+
+			<div class="container">
+                <div class="row product">
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 col-item">
+                        <img src="./img/homeIcon1.png" />
+                        <div class="col-item-title">我们的愿景</div>
+                        <div class="col-item-info">
+                            推动技术驱动的课堂教学变革和优质课程资源的普及,让不同学校、不同地区都能共享优质的教育资源与服务,成为中国基础教育变革的推动者和引领者.
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
