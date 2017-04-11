@@ -35,5 +35,6 @@ This page will show :
 ## row-col-partLine.html
 
 用 CSS 给 row-col 栏目加分割线。
-> 演示图片：http://ojjslhnls.bkt.clouddn.com/blog/20170411/194141619.png
+
+> 点击查看 ![演示图片](http://ojjslhnls.bkt.clouddn.com/blog/20170411/194141619.png)！
 
