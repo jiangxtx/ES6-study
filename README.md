@@ -38,3 +38,8 @@ This page will show :
 
 > 点击查看 ![演示图片](http://ojjslhnls.bkt.clouddn.com/blog/20170411/194141619.png)！
 
+## FactoryPattern-demo.js
+
+JavaScript 语言之“模式--工厂模式”的学习示例。
+
+> ——jiangxtx 2017-5-7
