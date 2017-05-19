@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>e.target & e.currentTarget</title>
+    <link ref="shortcut icon" href="/src/img/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+
+<h2>Compare e.target & e.currentTarget
+    <sub>Note the output of Console.</sub>
+</h2>
+
+<div id="wrapper">
+    <h3>wrapper-click</h3>
+    <a href="#" id="inner">inner-click!</a>
+</div>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $('#wrapper').click(function(e) {
+        console.log('#wrapper');
+        console.log(e.currentTarget);
+        console.log(e.target);
+    });
+    $('#inner').click(function(e) {
+        console.log('#inner');
+        console.log(e.currentTarget);
+        console.log(e.target);
+    });
+</script>
+</body>
+</html>
