@@ -35,11 +35,20 @@ This page will show :
 ## row-col-partLine.html
 
 用 CSS 给 row-col 栏目加分割线。
-> 演示图片：http://ojjslhnls.bkt.clouddn.com/blog/20170411/194141619.png
 
+<<<<<<< HEAD
 ## page-loading-animate.html
 
 页面加载初始化时的动画展示，
 
 示例图如下所示：
 ![mark](http://ojjslhnls.bkt.clouddn.com/blog/20170617/173145622.bmp)
+=======
+> 点击查看 ![演示图片](http://ojjslhnls.bkt.clouddn.com/blog/20170411/194141619.png)！
+
+## FactoryPattern-demo.js
+
+JavaScript 语言之“模式--工厂模式”的学习示例。
+
+> ——jiangxtx 2017-5-7
+>>>>>>> 1f358ae1198575eb8b4b0dd7aa5acf0e8bd5d5a4
