@@ -37,3 +37,9 @@ This page will show :
 用 CSS 给 row-col 栏目加分割线。
 > 演示图片：http://ojjslhnls.bkt.clouddn.com/blog/20170411/194141619.png
 
+## page-loading-animate.html
+
+页面加载初始化时的动画展示，
+
+示例图如下所示：
+![mark](http://ojjslhnls.bkt.clouddn.com/blog/20170617/173145622.bmp)
