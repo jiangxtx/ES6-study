@@ -52,3 +52,9 @@ JavaScript 语言之“模式--工厂模式”的学习示例。
 ![mark](http://ojjslhnls.bkt.clouddn.com/blog/20170617/173145622.bmp)
 
 > ——jiangxtx 2017-6-17
+
+## single-data-bind-DOM.html
+
+数据视图单向绑定的demo 示例。
+
+> -- jiangxtx 2017-6-18
