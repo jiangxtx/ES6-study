@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS 3.0 study guide</title>
+</head>
+<style type="text/css">
+	:target {
+		border: 2px solid #ededed;
+		background-color: #e5eecc;
+	}
+
+	.not :not(.not-1) {
+		background-color: red;
+
+	}
+
+	.shadow-1 {
+		text-shadow: 0 0 5px #ff0000;
+		color: #fff;
+		font-size: 24px;
+	}
+	.shadow-2 {
+		text-shadow: 2px 2px 4px #000;
+		color: #fff;
+		font-size: 24px;
+	}
+	.stroke {
+		color: #fff;
+		text-shadow: #000 1px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
+		font-size: 24px;	
+	}
+	.columns {
+		column-count: 3;
+		column-gap: 24px;
+		column-rule: 1px dashed black;
+	}
+	.background {
+		background: url(http://img4.duitang.com/uploads/item/201410/14/20141014151107_hJ2me.jpeg) no-repeat;
+		background-size: cover;
+		height: 320px;
+		width: 200px;
+		padding: 20px;
+		border: 10px dashed #333;
+		margin: 30px;
+		float: left;
+	}
+	.back-1 {
+		background-clip: border-box;
+	}
+	.back-2 {
+		background-clip: padding-box;
+	}
+	.back-3 {
+		background-clip: content-box;
+	}
+
+	.back-11 {
+		background-origin: border-box;
+	}
+	.back-12 {
+		background-origin: padding-box;
+	}
+	.back-13 {
+		background-origin: content-box;
+	}
+</style>
+<body>
+<h1>《CSS 高效开发实战》 学习笔记</h1>
+<h3>目标伪类 :target</h3>
+<a href="#a1">turn to content 1</a>
+<a href="#a2">turn to content 2</a>
+
+<h3>否定伪类 :not</h3>
+<div class="not">
+	<p class="not-1">not-1</p>
+	<p class="not-2">not-121</p>
+	<p class="not-3">not-23451</p>
+</div>
+
+<h2>更炫酷的字体</h2>
+<h3>字体阴影</h3>
+<p class="shadow-1">Hello World!光晕效果 </p>
+<p class="shadow-2">Hello World!浮雕效果 </p>
+
+<h3>字体描边</h3>
+<p class="stroke">啊！美丽的中国，我的母亲！</p>
+
+<h3>字体分栏</h3>
+<p class="columns">
+	1. 圣诞节发牢骚福建省，束带结发来上课的积分。束带结发路上看见发牢骚的积分流口水的房间，时间段来看福建省的李开复时间段。速度快放假圣诞快乐福建省的路口附近收代理费建设路口，举反例束带结发酸辣粉。圣诞节发牢骚福建省，束带结发来上课的积分。束带结发路上看见发牢骚的积分流口水的房间，时间段来看福建省的李开复时间段。速度快放假圣诞快乐福建省的路口附近收代理费建设路口，举反例束带结发酸辣粉。 2. 圣诞节发牢骚福建省，束带结发来上课的积分。束带结发路上看见发牢骚的积分流口水的房间，时间段来看福建省的李开复时间段。速度快放假圣诞快乐福建省的路口附近收代理费建设路口，举反例束带结发酸辣粉。圣诞节发牢骚福建省，束带结发来上课的积分。束带结发路上看见发牢骚的积分流口水的房间，时间段来看福建省的李开复时间段。 3. 速度快放假圣诞快乐福建省的路口附近收代理费建设路口，举反例束带结发酸辣粉。圣诞节发牢骚福建省，束带结发来上课的积分。束带结发路上看见发牢骚的积分流口水的房间，时间段来看福建省的李开复时间段。速度快放假圣诞快乐福建省的路口附近收代理费建设路口，举反例束带结发酸辣粉。圣诞节发牢骚福建省，束带结发来上课的积分。束带结发路上看见发牢骚的积分流口水的房间，时间段来看福建省的李开复时间段。速度快放假圣诞快乐福建省的路口附近收代理费建设路口，举反例束带结发酸辣粉。
+</p>
+
+<h3>图片背景的origin & clip 属性</h3>
+<div class="background back-1"></div>
+<div class="background back-2"></div>
+<div class="background back-3"></div>
+
+<div class="background back-11"></div>
+<div class="background back-12"></div>
+<div class="background back-13"></div>
+
+</body>
+</html>
