@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>postMessage Guide</title>
+</head>
+<body>
+<h4>I am here, waiting for your maeeage, and you....</h4>
+<div>
+    <strong style="">Receive msg is : </strong>
+    <span style="color: red;" id="receive_msg">....</span>
+</div>
+
+<script>
+
+    console.log('Waiting for the postMsg...')
+    function receiveMsg(e) {
+//        if (e.origin !== )
+        console.log('receiveMsg data: ', e)
+        document.getElementById('receive_msg').innerHTML = e.data || 'no msg...';
+    }
+
+    window.addEventListener('message', receiveMsg, false)
+</script>
+
+</body>
+</html>

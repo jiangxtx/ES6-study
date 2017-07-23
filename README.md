@@ -64,3 +64,12 @@ JavaScript 语言之“模式--工厂模式”的学习示例。
 《css 高效开发与实践》一书的学习笔记与编程实践；
 
 > --jiangxtx 2017-7-11
+
+## postMessage 用法示例
+
+详见目录：html5-postMessage-guide。
+
+示例图：
+![mark](http://ojjslhnls.bkt.clouddn.com/blog/20170723/192056774.png)
+
+> --jiangxtx 2017-7-23

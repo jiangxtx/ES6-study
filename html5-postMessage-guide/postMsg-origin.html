@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>postMessage Guide</title>
+    <link ref="shortcut icon" href="../src/img/favicon.ico" type="image/x-icon"/>
+    <style>
+        #child {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h1>postMessage Guide</h1>
+    <h3>涉及到的页面：</h3>
+    <ol>
+        <li>postMsg-origin.html</li>
+        <li>postMsg-dest.html</li>
+    </ol>
+</div>
+
+    <div>
+        <iframe id="child"
+                src=""></iframe>
+        <h5>以上是一个单独作用域的 iframe 标签内容！！</h5>
+    </div>
+    <hr>
+    <div>
+        <h5>下面展示：页面间消息传递</h5>
+        <input type="text" id="text" placeholder="请输入消息..." />
+        <button type="button" onclick="omPostMsg()">发送消息给 frame</button>
+    </div>
+    <div>
+        <button type="button" onclick="openNewPage()">打开新页面 发熊消息</button>
+    </div>
+
+    <script>
+        
+        var url = `http://localhost:8100/public/postMsg-dest.html`;
+        console.log('post url: ', url)
+
+        window.onload = function () {
+            document.getElementById('child').src = url;
+
+            window.frames[0].postMessage('onloaded Msg', url)
+        }
+
+        function omPostMsg() {
+//            console.log('onPostMsg.....')
+            var msg = document.getElementById('text').value || 'default msg';
+            window.frames[0].postMessage(msg, url)
+        }
+
+        var count = 1;
+
+        function openNewPage() {
+            var newpage = window.open(url);
+
+//            newpage.postMessage(`count ${count++}`, url)  // 同步代码，则无效果！？
+
+            /* 异步这正常运行
+            setTimeout(function () {
+                newpage.postMessage(`count ${count++}`, url)
+            }, 0)*/
+
+            setInterval(function () {
+                newpage.postMessage(`count ${count++}`, url)
+            }, 1000)
+        }
+        
+    </script>
+
+</body>
+</html>
