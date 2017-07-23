@@ -27,13 +27,22 @@
 	.stroke {
 		color: #fff;
 		text-shadow: #000 1px 0 0, #000 0 1px 0, #000 -1px 0 0, #000 0 -1px 0;
-		font-size: 24px;	
+		font-size: 24px;
 	}
 	.columns {
 		column-count: 3;
 		column-gap: 24px;
 		column-rule: 1px dashed black;
 	}
+
+	.background-img {
+		background: url(http://img4.duitang.com/uploads/item/201410/14/20141014151107_hJ2me.jpeg) no-repeat;
+		background-size: cover;
+		height: 320px;
+		width: 200px;
+		border: 1px solid #333;
+	}
+
 	.background {
 		background: url(http://img4.duitang.com/uploads/item/201410/14/20141014151107_hJ2me.jpeg) no-repeat;
 		background-size: cover;
@@ -63,6 +72,66 @@
 	.back-13 {
 		background-origin: content-box;
 	}
+
+	.gradient {
+		height: 68px;
+		margin-bottom: 12px;
+	}
+	.gradient-1 {
+		background: linear-gradient(red, blue);
+	}
+	.gradient-2 {
+		background: linear-gradient(45deg, red, blue);
+	}
+	.gradient-3 {
+		background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+		padding: 12px;
+	}
+	.radial-gradient {
+		height: 200px;
+		width: 200px;
+		border-radius: 50%;
+		background: radial-gradient(red, green, blue);
+	}
+	.radial-gradient-2 {
+		height: 200px;
+		width: 200px;
+		border-radius: 50%;
+		background: radial-gradient(red 5%, green 15%, blue 60%);
+	}
+
+	.box-magic {
+		width: 250px;
+		height: 42px;
+		text-align: center;
+		line-height: 42px;
+		border: 1px solid red;
+		border-radius: 5px;
+		clear: both;
+		display: block;
+		background: lightgoldenrodyellow;
+	}
+	.box-magic:hover {
+		background: yellow;
+		cursor: pointer;
+	}
+
+	.shadow {
+		height: 80px;
+		width: 80px;
+		margin: 30px;
+		float: left;
+	}
+	.shadow-1 { box-shadow: red 0 0 30px 10px;  }
+	.shadow-2 { box-shadow: red 0 0 30px 10px inset; }
+	.shadow-3 { box-shadow: red 10px 10px 30px 10px inset; }
+	.shadow-4 { box-shadow: red 10px 0 30px 10px; }
+	.shadow-5 { box-shadow: red 0 0 30px 10px inset; }
+
+	.rotate { transform: rotate(17deg) }
+	.rotate-1 { transform: rotateX(30deg) }
+
+
 </style>
 <body>
 <h1>《CSS 高效开发实战》 学习笔记</h1>
@@ -98,6 +167,97 @@
 <div class="background back-11"></div>
 <div class="background back-12"></div>
 <div class="background back-13"></div>
+
+<div  style="clear: both;"></div>
+
+<h3>颜色渐变 - 线性渐变</h3>
+<div class="gradient gradient-1">默认从上到下</div>
+<div class="gradient gradient-2">从左到右</div>
+<div class="gradient-tmp gradient-3">
+	彩虹色效果（多颜色）彩虹色效果（多颜色）彩虹色效果（多颜色）彩虹色效果（多颜色）
+	彩虹色效果（多颜色）彩虹色效果（多颜色）彩虹色效果（多颜色）彩虹色效果（多颜色）
+	彩虹色效果（多颜色）彩虹色效果（多颜色）彩虹色效果（多颜色）彩虹色效果（多颜色）
+</div>
+
+<h3>颜色渐变 - 放射渐变</h3>
+<div class="radial-gradient"></div>
+<div class="radial-gradient-2"></div>
+
+<h3>边框 - 阴影</h3>
+<button class="box-magic">我是一个肌肤茉莉的按钮</button>
+<div class="shadow shadow-1"></div>
+<div class="shadow shadow-2"></div>
+<div class="shadow shadow-3"></div>
+<div class="shadow shadow-4"></div>
+<div class="shadow shadow-5"></div>
+
+<div  style="clear: both;"></div>
+
+
+
+<h2>变换 - 动画</h2>
+
+<style>
+	.scale { transition: all 0.6s; }
+	.scale:hover {
+		transform: scale(1.2);
+		cursor: pointer;
+	}
+	.translate {
+		transform: translate(100px, 25px);
+	}
+
+	.transition {
+		height: 50px;
+		width: 120px;
+		transition: width 1.2s, background-color 0.6s 1.2s;
+		background-color: red;
+		margin-bottom: 24px;
+	}
+	.transition:hover { width: 350px; background-color: yellow; }
+	.keyframes {
+		animation: spinY 4s infinite linear;
+	}
+	@keyframes spinY {
+		from { transform: rotateY(0deg); }
+		to { transform: rotateY(-360deg); }
+	}
+
+	.keyframes-1 {
+		animation: spinA 4s infinite linear;
+	}
+	@keyframes spinA {
+		0% { transform: rotate(0deg); }
+		25% { transform: rotate(-180deg); }
+		50% { transform: rotate(-270deg); }
+		75% { transform: rotate(-310deg); }
+		100% { transform: rotate(-360deg); }
+	}
+
+
+</style>
+
+<h3>旋转变换</h3>
+<div>
+	<div class="background-img rotate"></div>
+	<div class="rotate-1">这里是文字，效果！</div>
+</div>
+
+<h3>scale 比例缩放</h3>
+<p>鼠标移动到图片上看看效果....</p>
+<div style="width: 200px; height: 320px; overflow: hidden;">
+	<div class="background-img scale"></div>
+</div>
+
+<h3>位移变换 - translate</h3>
+<div>
+	<div class="background-img translate"></div>
+</div>
+
+<h3>交互动画 - transition</h3>
+<div class="transition"></div>
+<div class="background-img keyframes"></div>
+<div class="background-img keyframes-1"></div>
 
 </body>
 </html>

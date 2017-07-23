@@ -63,7 +63,10 @@ JavaScript 语言之“模式--工厂模式”的学习示例。
 
 《css 高效开发与实践》一书的学习笔记与编程实践；
 
-> --jiangxtx 2017-7-11
+页面展示示例：
+![mark](http://ojjslhnls.bkt.clouddn.com/blog/20170723/220631724.png)
+
+> --jiangxtx 2017-7-22
 
 ## postMessage 用法示例
 
