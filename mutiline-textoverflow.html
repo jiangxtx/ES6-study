@@ -1,0 +1,45 @@
+<html>
+<head>
+
+    <style>
+
+        .text {
+            width: 60%;
+            padding: 12px;
+            margin: auto;
+            background-color: lightblue;
+        }
+        .multilline-overflow {
+            display: -webkit-box !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+        }
+
+    </style>
+</head>
+<body>
+    <meta charset="UTF-8">
+    <title>仲夏·之夜</title>
+
+    <h2>以下这段话将控制在3行里</h2>
+
+    <div class="text">
+        <div class="multilline-overflow">
+            我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，
+            我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，
+            我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，
+            我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，
+            我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，我要说很多很多的话语，
+        </div>
+    </div>
+
+    <script src="https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        console.log('jquery :', !!window.$)
+    </script>
+</body>
+</html>

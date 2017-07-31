@@ -237,6 +237,35 @@
 
 </style>
 
+<style>
+	.mainBox {
+		width: 1160px;
+		background-color:red;
+	}
+	.mainBox:after{
+		display: block;
+		clear:both;
+		height:0;
+		content: "";
+		visibility: hidden;
+		overflow:hidden;
+	}
+	.leftBox {
+		background-color:#C9F;
+		width:740px;
+		height: 300px;
+		float: left;
+	}
+	.rightBox {
+		background-color:#FCF;
+		width:210px;
+		height: 300px;
+		margin-left:10px;
+		float: left;
+	}
+
+</style>
+
 <h3>旋转变换</h3>
 <div>
 	<div class="background-img rotate"></div>
@@ -258,6 +287,19 @@
 <div class="transition"></div>
 <div class="background-img keyframes"></div>
 <div class="background-img keyframes-1"></div>
+
+
+
+<h3>after 清除浮动</h3>
+<div class="mainBox">
+	<div class="leftBox">
+	</div>
+	<div class="rightBox">
+	</div>
+	<!-- <div style="clear: both"></div> -->
+	<!-- <span style="clear: both"></span> -->
+</div>
+<div>测试文字！</div>
 
 </body>
 </html>
