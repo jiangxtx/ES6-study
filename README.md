@@ -84,3 +84,9 @@ JavaScript 语言之“模式--工厂模式”的学习示例。
 > refer Address: http://www.w3cplus.com/css3/css3-3d-transform.html
 
 > -- 2017-8-4 14:35
+
+## cube-rotate-demo.html
+
+通过 css3.0 实现 一个立方体的旋转展现等动画特效。
+
+> --2017-8-11 09:01
