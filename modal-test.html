@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal Show</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .modal {
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            z-index: 9999;
+            position: fixed;
+            top: 0;
+            background: #000;
+            opacity: 0.6;
+        }
+        .modal-show {
+            height: 100%;
+            overflow: auto;
+        }
+        .modal-diolage {
+            opacity: 0;
+            width: 600px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background: #fff;
+            padding: 12px;
+        }
+        .modal-diolage-show {
+            opacity: 1;
+            top: 0%;
+            transition: all 0.5s;
+        }
+        .modal-diolage-head {
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .modal-diolage-body {
+            min-height: 12em;
+            border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+        }
+        .modal-diolage-foot {
+            padding-top: 12px;
+            text-align: right;
+        }
+
+    </style>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+<h1>Modal Show with Pure HTML & CSS</h1>
+
+<div id="overlay_over" class="modal">
+    <div class="modal-diolage">
+        <div class="modal-diolage-head">遮罩示例</div>
+        <div class="modal-diolage-body">遮罩示例遮罩示例遮罩示例遮罩示例遮罩示例遮罩示例</div>
+        <div class="modal-diolage-foot">
+            <button id="overlay_over_btn">close</button>
+        </div>
+    </div>
+</div>
+
+<button id="show_overlay" style="position:absolute;top: 100px; left: 140px ;"><big> 打开遮罩弹窗</big></button>
+
+<script>
+    $(function () {
+        $('#show_overlay').on('click', function () {
+            $("#overlay_over").addClass('modal-show')
+            $("#overlay_over .modal-diolage").addClass('modal-diolage-show')
+        });
+        $('#overlay_over_btn').on('click', function () {
+            $("#overlay_over").removeClass('modal-show')
+            $("#overlay_over .modal-diolage").removeClass('modal-diolage-show')
+        })
+    })
+</script>
+
+</body>
+</html>
