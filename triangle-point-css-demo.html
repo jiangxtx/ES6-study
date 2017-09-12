@@ -143,6 +143,40 @@
 
     </style>
 
+    <style>
+        .position-wrap {
+            min-height: 250px;
+        }
+
+        .banner {
+            background: yellow;
+            position: relative;
+            padding: 12px;
+        }
+        .banner-title {
+            display: inline-block;
+            margin: 0 auto;
+            border: 1px solid red;
+            padding: 2px 6px;
+        }
+
+        .banner-content-wrap {
+            position: absolute;
+            /*border: 1px solid #d0d0d0;
+            border-radius: 4px;*/
+            display: none;
+        }
+
+        .banner-title:hover + .banner-content-wrap {
+            display: block;
+        }
+        .position-wrap .box {
+            margin: 0;
+            top: 18px;
+            left: 18px;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -163,6 +197,19 @@
     <div class="box box-up-fill"></div>
 
     <div class="box box-up-hollow"></div>
+</div>
+
+<h3>在 position: absolute 时如何定位实现？</h3>
+
+<div class="position-wrap">
+    <div class="banner">
+        <span class="banner-title">鼠标移到我身上来~</span>
+        <div class="banner-content-wrap">
+            <div class="box box-up-hollow">
+                我显示出来了！！！
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
