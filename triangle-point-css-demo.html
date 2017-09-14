@@ -177,6 +177,39 @@
         }
     </style>
 
+    <style>
+        .box-up-shadow {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .box-up-shadow:before {
+            position: absolute;
+            content: '';
+            width: 14px;
+            height: 14px;
+            top: -8px;
+            left: 50%;
+            margin-left: -7px;
+            overflow: hidden;
+            pointer-events: none;
+            transform: rotate(45deg);
+            background-color: red;
+            box-shadow: -1px -1px 2px rgba(0,0,0,0.5);
+        }
+        .box-up-shadow:after {
+            position: absolute;
+            content: '';
+            width: 14px;
+            height: 14px;
+            top: -7px;
+            left: 50%;
+            margin-left: -7px;
+            overflow: hidden;
+            pointer-events: none;
+            transform: rotate(45deg);
+            background-color: #fff;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -197,6 +230,13 @@
     <div class="box box-up-fill"></div>
 
     <div class="box box-up-hollow"></div>
+</div>
+
+<h3>如何给三角箭头加上阴影效果？</h3>
+<sub>具体参见：http://blog.csdn.net/swallowliyan/article/details/53639059</sub>
+
+<div class="box-wrap">
+    <div class="box box-up-shadow"></div>
 </div>
 
 <h3>在 position: absolute 时如何定位实现？</h3>
