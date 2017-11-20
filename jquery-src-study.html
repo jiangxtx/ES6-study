@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery study</title>
+    <!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+    <script src="./jquery-src-study.js"></script>
+</head>
+<body>
+
+<div class="element">I am div</div>
+<p class="element">I am p</p>
+<div class="element-1">I am div for 1.</div>
+<span class="element">I am span</span>
+
+<h1>显示代码的方法</h1>
+<p>
+    <code>&lt;header&gt; I am a header!</code>
+    code Tag to show codes.
+</p>
+
+<script>
+    $(function() {
+        console.log('page loaded success!')
+
+        var doms = $('.element');
+        window.console.log(doms, doms.length)
+        doms.css('color', 'red').attr('data-type', 'new-nation')
+
+    })
+</script>
+
+</body>
+</html>
