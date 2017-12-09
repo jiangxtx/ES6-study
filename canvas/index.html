@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas demo</title>
+
+    <style>
+        .canvas {
+            border: 1px solid black;
+            margin: 16px 8px;
+        }
+    </style>
+</head>
+<body style="padding-left: 350px;">
+
+<h1>Canvas Demo</h1>
+<div>
+    学习网站：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes">canvas MDN</a>
+</div>
+<canvas id="canvas" class="canvas"></canvas>
+<canvas id="canvas_drawRect" class="canvas"></canvas>
+<canvas id="canvas_drawTraingle" class="canvas"></canvas>
+<canvas id="canvas_smileFace" class="canvas"></canvas>
+
+<script>
+    function $(id) {
+        return document.getElementById(id).getContext('2d')
+    }
+
+    var ctx_3 = $('canvas_smileFace')
+    ctx_3.beginPath();
+    ctx_3.arc(75,75,50,0,Math.PI*2,true); // 绘制
+    ctx_3.moveTo(110,75);
+    ctx_3.arc(75,75,35,0,Math.PI,false);   // 口(顺时针)
+    ctx_3.moveTo(65,65);
+    ctx_3.arc(60,65,5,0,Math.PI*2,true);  // 左眼
+    ctx_3.moveTo(95,65);
+    ctx_3.arc(90,65,5,0,Math.PI*2,true);  // 右眼
+    ctx_3.stroke();
+
+
+    var ctx = $('canvas')
+    ctx.fillStyle = 'rgb(200, 0, 0)'
+    ctx.fillRect(10, 10, 55, 50)
+    ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
+    ctx.fillRect(30, 30, 55, 50);
+
+
+    var ctx_1 = $('canvas_drawRect')
+    ctx_1.fillRect(25,25,100,100);
+    ctx_1.clearRect(45,45,60,60);
+    ctx_1.strokeRect(50,50,50,50);
+
+
+    var ctx_2 = $('canvas_drawTraingle')
+    ctx_2.beginPath()
+    ctx_2.moveTo(75, 50)
+    ctx_2.lineTo(100, 25)
+    ctx_2.lineTo(100, 75)
+    ctx_2.fill();
+
+
+</script>
+
+</body>
+</html>
