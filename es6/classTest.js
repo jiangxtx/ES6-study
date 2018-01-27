@@ -32,7 +32,8 @@ console.log(animal.__proto__.hasOwnProperty('toString'));
 /************************************* 华丽的分割线 *******************************************/
 
 class Cat extends Animal {
-    // 子类必须要在constructor中指定super 方法，否则在新建实例的时候会报错.
+    // 子类必须在constructor方法中调用super方法，否则新建实例时会报错(this is not defined)。
+    // 这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
     // 如果没有置顶consructor,默认带super方法的constructor将会被添加
     constructor(action) {
         super('catitkky', 'red');
@@ -77,6 +78,25 @@ console.log(Cat.__proto__ === Function.prototype); //
 console.log(CatNoextends.__proto__ === Function.prototype); // CatNoextends 是一个普通函数，所以继承 Function.prototype
 console.log(Cat.prototype.__proto__ === Object.prototype); //
 console.log(CatNoextends.prototype.__proto__ === Object.prototype); //true
+
+
+class Dog extends Animal {
+    constructor(name, color, live, age) {
+        super(name, color, live);
+        this.age  = age;
+        this.dogSymbol = 'I am a dog!';
+        this.play = (val) => console.log('play dog: ' + this.name + ' -- ' + val)
+    }
+}
+
+const dog = new Dog('wangcai', 'black', true, 6)
+console.log(dog.play('playing'))  // play dog: wangcai -- playing.
+console.log(dog.hasOwnProperty('longLiving')) // true
+console.log(dog.hasOwnProperty('play')) // true
+
+// 类的类型就是一个函数，是一个“特殊函数”，指向的是构造函数。
+console.log(Dog === Dog.prototype.constructor) // true
+console.log(typeof Dog) // "function"
 
 const PI = Math.PI;
 console.log(`PI: ${PI}`);
