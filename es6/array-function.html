@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<p>友情提醒：请打开firebug控制台查看输出信息！！！</p>
+
+<script>
+
+  ///////////////////////////////////////////// 箭头操作符
+  var array = [12, 23, 34];
+
+  console.info('传统写法：');
+  array.forEach(function (value, index, arr) {
+    console.log(value, index, arr);
+  });
+
+
+  console.info('ES6的写法：');
+  array.forEach(value => console.log(value));
+
+  array.forEach((value, index) => {
+    console.log(value, index);
+  });
+
+  // 显示传参总是要好过隐示传参
+  array.forEach((value, index) => _showArrItem(value, index));
+
+  function _showArrItem(value, index) {
+    console.log('index：' + index + ' 的值为：' + value);
+  }
+
+  // 隐示传参，让代码更简洁，看上去更高深莫测！
+  // 内部编写库时推荐使用，编写项目的业务逻辑时不建议，毕竟要考虑同行的感受。
+  console.log('>>>Here show you Transferring params hiddenly!')
+  array.forEach(_showArrItem)
+
+</script>
+
+
+</body>
+</html>
